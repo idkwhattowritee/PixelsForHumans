@@ -1,0 +1,1541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Leader Compass - Human-Centered Strategic Support</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 50%, #475569 75%, #64748b 100%);
+            --secondary-gradient: linear-gradient(135deg, #1a365d 0%, #2563eb 25%, #3b82f6 50%, #60a5fa 75%, #93c5fd 100%);
+            --accent-gradient: linear-gradient(135deg, #0d9488 0%, #14b8a6 25%, #2dd4bf 50%, #5eead4 75%, #99f6e4 100%);
+            --light-gradient: linear-gradient(to bottom right, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
+            --paper-texture: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%239C92AC' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --accent-color: #14b8a6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            background: var(--light-gradient), var(--paper-texture);
+            background-attachment: fixed;
+            background-size: cover;
+            overflow-x: hidden;
+        }
+
+        /* Add the + pattern background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231e293b' fill-opacity='0.05'%3E%3Cpath d='m36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+            animation: backgroundMove 30s linear infinite;
+            z-index: -2;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        /* Floating Background Elements */
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            animation: float 20s infinite linear;
+        }
+
+        .floating-shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+            background: linear-gradient(45deg, rgba(59, 130, 246, 0.1), rgba(147, 197, 253, 0.1));
+        }
+
+        .floating-shape:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            top: 60%;
+            right: 15%;
+            animation-delay: -7s;
+            background: linear-gradient(45deg, rgba(20, 184, 166, 0.1), rgba(94, 234, 212, 0.1));
+        }
+
+        .floating-shape:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            top: 80%;
+            left: 70%;
+            animation-delay: -14s;
+            background: linear-gradient(45deg, rgba(30, 41, 59, 0.1), rgba(148, 163, 184, 0.1));
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
+            25% { transform: translateY(-30px) rotate(90deg); opacity: 0.6; }
+            50% { transform: translateY(-60px) rotate(180deg); opacity: 0.3; }
+            75% { transform: translateY(-30px) rotate(270deg); opacity: 0.6; }
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.9) 50%, rgba(51, 65, 85, 0.85) 100%);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            color: white;
+            padding: 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 0;
+            position: relative;
+            z-index: 1001;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            background: linear-gradient(45deg, #ffffff, #93c5fd, #5eead4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            z-index: 1002;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 5px 15px rgba(255, 255, 255, 0.3));
+        }
+
+        .compass-icon {
+            margin-right: 15px;
+            font-size: 2.2rem;
+            filter: drop-shadow(0 3px 6px rgba(0,0,0,0.3));
+            animation: rotate 25s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Navigation */
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 0.5rem;
+            background: var(--glass-bg);
+            padding: 10px;
+            border-radius: 50px;
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-links li {
+            position: relative;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 28px;
+            border-radius: 30px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            white-space: nowrap;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-gradient);
+            transform: scaleX(0) scaleY(0);
+            transform-origin: center;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 30px;
+            z-index: -1;
+        }
+
+        .nav-links a:hover::before {
+            transform: scaleX(1) scaleY(1);
+        }
+
+        .nav-links a:hover {
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(20, 184, 166, 0.4);
+        }
+
+        .nav-links a.active {
+            background: var(--accent-gradient);
+            color: white;
+            box-shadow: 0 8px 25px rgba(20, 184, 166, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            color: #1e293b;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes backgroundMove {
+            0% { transform: translateX(0) translateY(0); }
+            25% { transform: translateX(-10px) translateY(-5px); }
+            50% { transform: translateX(-20px) translateY(-10px); }
+            75% { transform: translateX(-10px) translateY(-5px); }
+            100% { transform: translateX(0) translateY(0); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: heroEntrance 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes heroEntrance {
+            0% {
+                opacity: 0;
+                transform: translateY(60px) scale(0.9);
+            }
+            50% {
+                opacity: 0.5;
+                transform: translateY(30px) scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            margin-bottom: 2rem;
+            font-weight: 300;
+            background: linear-gradient(45deg, #0f172a, #1e293b, #334155, #475569);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 6s ease-in-out infinite;
+            line-height: 1.2;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero .subtitle {
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            margin-bottom: 3rem;
+            opacity: 0.95;
+            font-weight: 300;
+            animation: subtitleFade 2s ease-in-out 0.5s both;
+            color: #334155;
+        }
+
+        @keyframes subtitleFade {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 0.95; transform: translateY(0); }
+        }
+
+        /* Stats */
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+            animation: statsReveal 2s ease-in-out 1s both;
+        }
+
+        @keyframes statsReveal {
+            0% { opacity: 0; transform: translateY(40px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .stat {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            padding: 2.5rem 2rem;
+            border-radius: 25px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(226, 232, 240, 0.5);
+        }
+
+        .stat::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s ease;
+            opacity: 0;
+        }
+
+        .stat:hover::before {
+            animation: shimmer 1.5s ease-in-out;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); opacity: 0; }
+        }
+
+        .stat:hover {
+            transform: translateY(-15px) scale(1.05);
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            font-weight: 500;
+            opacity: 0.9;
+            color: #334155;
+        }
+
+        /* Positioning Statement */
+        .positioning-statement {
+            font-size: 1.5rem;
+            font-style: italic;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(226, 232, 240, 0.5);
+            padding: 3rem;
+            border-radius: 30px;
+            margin: 4rem auto;
+            max-width: 800px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+            line-height: 1.7;
+            position: relative;
+            animation: statementGlow 3s ease-in-out 1.5s both;
+            color: #334155;
+        }
+
+        @keyframes statementGlow {
+            0% { opacity: 0; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        /* CTA Button */
+        .cta-button {
+            display: inline-block;
+            background: var(--accent-gradient);
+            color: white;
+            padding: 22px 50px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-top: 2rem;
+            box-shadow: 0 15px 40px rgba(20, 184, 166, 0.4);
+            position: relative;
+            overflow: hidden;
+            animation: ctaPulse 2s ease-in-out 2s both;
+        }
+
+        @keyframes ctaPulse {
+            0% { opacity: 0; transform: scale(0.8); }
+            50% { transform: scale(1.05); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 25px 60px rgba(20, 184, 166, 0.5);
+            background: linear-gradient(135deg, #0d9488 0%, #14b8a6 25%, #2dd4bf 50%, #5eead4 75%, #99f6e4 100%);
+        }
+
+        /* Problem/Solution Section */
+        .problem-solution {
+            background: linear-gradient(to bottom right, #ffffff 0%, #f8fafc 100%), var(--paper-texture);
+            padding: 100px 0;
+        }
+
+        .columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .pain-points li, .solutions li {
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 3px solid var(--accent-color);
+            list-style: none;
+            font-size: 1.1rem;
+            background: rgba(255,255,255,0.7);
+            border-radius: 8px;
+            border: 1px solid rgba(226, 232, 240, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .pain-points li:hover, .solutions li:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Services Section */
+        .services-section {
+            padding: 100px 0;
+            background: linear-gradient(to bottom right, #f8fafc 0%, #f1f5f9 100%), var(--paper-texture);
+        }
+
+        .services-heading {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            color: #1e293b;
+        }
+
+        .service-toggle {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        .toggle-btn {
+            padding: 15px 25px;
+            background: var(--glass-bg);
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(226, 232, 240, 0.5);
+        }
+
+        .toggle-btn.active {
+            background: var(--accent-gradient);
+            color: white;
+            box-shadow: 0 8px 20px rgba(20, 184, 166, 0.3);
+        }
+
+        .service-content {
+            display: none;
+            padding: 30px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid rgba(226, 232, 240, 0.5);
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .service-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* More appealing service content */
+        .service-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #1e293b;
+            position: relative;
+            display: inline-block;
+        }
+
+        .service-content h3::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--accent-gradient);
+            border-radius: 2px;
+        }
+
+        .service-content ul {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .service-content li {
+            padding: 15px;
+            margin: 10px 0;
+            background: rgba(241, 245, 249, 0.5);
+            border-radius: 8px;
+            position: relative;
+            padding-left: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .service-content li::before {
+            content: '✓';
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 25px;
+            height: 25px;
+            background: var(--accent-gradient);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+
+        .service-content li:hover {
+            transform: translateX(5px);
+            background: rgba(241, 245, 249, 0.8);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        /* Process Section */
+        .process-section {
+            padding: 100px 0;
+            background: linear-gradient(to bottom right, #ffffff 0%, #f8fafc 100%), var(--paper-texture);
+        }
+
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-top: 50px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent-gradient);
+            z-index: 1;
+        }
+
+        .timeline-step {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            width: 20%;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-step:hover {
+            transform: translateY(-10px);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-weight: bold;
+            border: 3px solid var(--accent-color);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-step:hover .step-number {
+            background: var(--accent-gradient);
+            color: white;
+            transform: scale(1.1);
+            box-shadow: 0 10px 20px rgba(20, 184, 166, 0.3);
+        }
+
+        /* Trust Section */
+        .trust-section {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.95) 100%);
+            backdrop-filter: blur(10px);
+            text-align: center;
+            position: relative;
+            padding: 100px 0;
+        }
+
+        .client-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin: 4rem 0;
+            flex-wrap: wrap;
+        }
+
+        .client-logo {
+            background: var(--secondary-gradient);
+            color: white;
+            padding: 18px 35px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 15px 40px rgba(37, 99, 235, 0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .client-logo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .client-logo:hover::before {
+            left: 100%;
+        }
+
+        .client-logo:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 25px 60px rgba(37, 99, 235, 0.4);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            margin-top: 5rem;
+        }
+
+        .testimonial {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            padding: 3.5rem;
+            border-radius: 30px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(226, 232, 240, 0.5);
+        }
+
+        .testimonial::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: var(--accent-gradient);
+        }
+
+        .testimonial:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 2rem;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #1e293b;
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            background: var(--secondary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.2rem;
+        }
+
+        .testimonial-title {
+            font-size: 1rem;
+            color: #64748b;
+            margin-top: 0.5rem;
+        }
+
+        /* Results Section */
+        .results-section {
+            background: linear-gradient(to bottom right, #f8fafc 0%, #f1f5f9 100%), var(--paper-texture);
+            position: relative;
+            padding: 100px 0;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
+            margin-top: 5rem;
+        }
+
+        .result-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.95) 100%);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 3.5rem;
+            border-radius: 25px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .result-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: var(--accent-gradient);
+        }
+
+        .result-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .result-number {
+            font-size: 4rem;
+            font-weight: 800;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .result-description {
+            font-size: 1.15rem;
+            line-height: 1.6;
+            color: #1e293b;
+        }
+
+        /* Resources Section */
+        .resources-section {
+            padding: 100px 0;
+            background: var(--secondary-gradient);
+            color: white;
+        }
+
+        .resource-card {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 50px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .lead-capture {
+            display: flex;
+            margin-top: 30px;
+        }
+
+        .lead-capture input {
+            flex: 1;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 50px 0 0 50px;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.9);
+        }
+
+        .lead-capture button {
+            padding: 15px 30px;
+            background: var(--accent-gradient);
+            color: white;
+            border: none;
+            border-radius: 0 50px 50px 0;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lead-capture button:hover {
+            background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%);
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            padding: 100px 0;
+            background: linear-gradient(to bottom right, #f8fafc 0%, #f1f5f9 100%), var(--paper-texture);
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .pricing-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(226, 232, 240, 0.5);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 20px 0;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 100px 0;
+            background: linear-gradient(to bottom right, #ffffff 0%, #f8fafc 100%), var(--paper-texture);
+        }
+
+        /* Mobile Navigation Toggle */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 8px;
+            background: var(--glass-bg);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+        }
+
+        .nav-toggle span {
+            width: 28px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(135deg, rgba(15, 23, 42, 0.98) 0%, rgba(30, 41, 59, 0.95) 100%);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 30px 20px;
+                border-radius: 0 0 25px 25px;
+                box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+                border: 1px solid var(--glass-border);
+                border-top: none;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .hero {
+                padding: 120px 0 80px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.3rem;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .testimonials {
+                grid-template-columns: 1fr;
+            }
+
+            .client-logos {
+                gap: 1rem;
+            }
+
+            .columns {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline {
+                flex-direction: column;
+                align-items: center;
+                gap: 50px;
+            }
+
+            .timeline::before {
+                display: none;
+            }
+
+            .timeline-step {
+                width: 100%;
+            }
+
+            .lead-capture {
+                flex-direction: column;
+            }
+
+            .lead-capture input,
+            .lead-capture button {
+                width: 100%;
+                border-radius: 50px;
+            }
+
+            .lead-capture button {
+                margin-top: 10px;
+            }
+        }
+
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-60px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(60px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .scale-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--light-gradient);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-gradient);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-gradient);
+        }
+
+        /* Animation for problem/solution boxes */
+        @keyframes floatUp {
+            0% { transform: translateY(20px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        .pain-points li, .solutions li {
+            animation: floatUp 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        .pain-points li:nth-child(1) { animation-delay: 0.1s; }
+        .pain-points li:nth-child(2) { animation-delay: 0.2s; }
+        .pain-points li:nth-child(3) { animation-delay: 0.3s; }
+        .pain-points li:nth-child(4) { animation-delay: 0.4s; }
+        
+        .solutions li:nth-child(1) { animation-delay: 0.5s; }
+        .solutions li:nth-child(2) { animation-delay: 0.6s; }
+        .solutions li:nth-child(3) { animation-delay: 0.7s; }
+        .solutions li:nth-child(4) { animation-delay: 0.8s; }
+
+        /* Animation for testimonials */
+        @keyframes testimonialPop {
+            0% { transform: scale(0.95); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .testimonial {
+            animation: testimonialPop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            opacity: 0;
+        }
+
+        .testimonial:nth-child(1) { animation-delay: 0.1s; }
+        .testimonial:nth-child(2) { animation-delay: 0.3s; }
+        .testimonial:nth-child(3) { animation-delay: 0.5s; }
+        .testimonial:nth-child(4) { animation-delay: 0.7s; }
+    </style>
+</head>
+<body>
+    <!-- Floating Background Elements -->
+    <div class="floating-shapes">
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
+    </div>
+
+    <!-- Header -->
+    <header id="header">
+        <nav class="container">
+            <a href="#" class="logo">
+                <span class="compass-icon">🧭</span>
+                School Leader Compass
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#services">📋 Services</a></li>
+                <li><a href="#results">📊 Results</a></li>
+                <li><a href="#process">🔄 Process</a></li>
+                <li><a href="#contact">📞 Contact</a></li>
+            </ul>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 style="display: none;">School Leader Compass</h1>
+                <p class="subtitle"></p>
+                
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Leaders Supported</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">$2.5M+</div>
+                        <div class="stat-label">Grant Funding Secured</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">95%</div>
+                        <div class="stat-label">Client Satisfaction</div>
+                    </div>
+                </div>
+                
+                <div class="positioning-statement">
+                    "We're not here to give you another dashboard. We're here to stand next to you—so you can lead with clarity, confidence, and connection."
+                </div>
+                
+                <a href="#contact" class="cta-button">Get Started Today</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem/Solution Section -->
+    <section class="problem-solution fade-in">
+        <div class="container">
+            <div class="columns">
+                <div class="problem-column">
+                    <h3>The Reality School Leaders Face:</h3>
+                    <ul class="pain-points">
+                        <li>📉 Grant funding disappearing mid-year</li>
+                        <li>🔥 Burnout from constant crisis management</li>
+                        <li>📊 Accountability demands outpacing resources</li>
+                        <li>🖥️ Overwhelmed by tech "solutions" that don't fit reality</li>
+                    </ul>
+                </div>
+                <div class="solution-column">
+                    <h3>How We Help:</h3>
+                    <ul class="solutions">
+                        <li>🧭 Human-centered strategic planning</li>
+                        <li>🤝 Peer cohorts that actually solve problems</li>
+                        <li>💰 Grant implementation (not just applications)</li>
+                        <li>💡 Leadership resilience practices</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section fade-in">
+        <div class="container">
+            <h2 class="services-heading">How We Support Leaders</h2>
+            
+            <div class="service-toggle">
+                <button class="toggle-btn active" data-service="strategy">Strategic Planning</button>
+                <button class="toggle-btn" data-service="cohorts">Peer Cohorts</button>
+                <button class="toggle-btn" data-service="grants">Grant Support</button>
+                <button class="toggle-btn" data-service="wellbeing">Leader Wellbeing</button>
+            </div>
+            
+            <div class="service-content active" id="strategy-content">
+                <h3>Strategic Planning That Works</h3>
+                <p>We don't deliver cookie-cutter plans. Our 8-week Strategic Sprints help you:</p>
+                <ul>
+                    <li>Identify funding gaps and recovery strategies</li>
+                    <li>Align accountability standards with realistic implementation</li>
+                    <li>Build team capacity without burning out your staff</li>
+                    <li>Create measurable goals with clear milestones</li>
+                    <li>Engage stakeholders at all levels for buy-in</li>
+                </ul>
+                <p style="margin-top: 1.5rem; font-style: italic; color: #475569;">"The strategic plan we developed with School Leader Compass was the first one our team actually used throughout the year."</p>
+            </div>
+            
+            <div class="service-content" id="cohorts-content">
+                <h3>Peer Cohorts That Solve Real Problems</h3>
+                <p>Monthly small-group gatherings with leaders facing similar challenges:</p>
+                <ul>
+                    <li>Facilitated by former superintendents and principals</li>
+                    <li>Action-oriented problem solving (not just venting)</li>
+                    <li>Topics range from community partnerships to testing season survival</li>
+                    <li>Confidential space for honest discussion</li>
+                    <li>Access to shared resources and best practices</li>
+                </ul>
+                <p style="margin-top: 1.5rem; font-style: italic; color: #475569;">"The peer cohort became my lifeline - finally people who truly understood what I was dealing with."</p>
+            </div>
+            
+            <div class="service-content" id="grants-content">
+                <h3>Grant Support That Lasts</h3>
+                <p>We focus on sustainable implementation:</p>
+                <ul>
+                    <li>Help identifying appropriate funding opportunities</li>
+                    <li>Application support with realistic budgeting</li>
+                    <li>Implementation coaching to ensure funds create lasting impact</li>
+                    <li>Compliance tracking and reporting assistance</li>
+                    <li>Training for your team to build internal capacity</li>
+                </ul>
+                <p style="margin-top: 1.5rem; font-style: italic; color: #475569;">"They helped us secure $1.2M and actually use it effectively - no more 'use it or lose it' scrambling."</p>
+            </div>
+            
+            <div class="service-content" id="wellbeing-content">
+                <h3>Leadership Resilience</h3>
+                <p>Because you can't pour from an empty cup:</p>
+                <ul>
+                    <li>1:1 coaching for emotional resilience</li>
+                    <li>Group retreats during high-stress periods</li>
+                    <li>Practical frameworks for sustainable leadership</li>
+                    <li>Boundary-setting strategies</li>
+                    <li>Mindfulness practices for busy leaders</li>
+                </ul>
+                <p style="margin-top: 1.5rem; font-style: italic; color: #475569;">"The wellbeing program literally saved my career in education leadership."</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="process-section fade-in">
+        <div class="container">
+            <h2 class="section-title">Our Human-Centered Approach</h2>
+            <div class="timeline">
+                <div class="timeline-step">
+                    <div class="step-number">1</div>
+                    <h3>Discovery Call</h3>
+                    <p>We listen to your specific challenges</p>
+                </div>
+                <div class="timeline-step">
+                    <div class="step-number">2</div>
+                    <h3>Custom Roadmap</h3>
+                    <p>Tailored recommendations for your context</p>
+                </div>
+                <div class="timeline-step">
+                    <div class="step-number">3</div>
+                    <h3>Implementation</h3>
+                    <p>Hands-on support through execution</p>
+                </div>
+                <div class="timeline-step">
+                    <div class="step-number">4</div>
+                    <h3>Sustainability</h3>
+                    <p>Ongoing coaching for lasting impact</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="trust-section fade-in">
+        <div class="container">
+            <h2 class="section-title">Trusted by Leading School Districts</h2>
+            <div class="client-logos">
+                <div class="client-logo">Austin ISD</div>
+                <div class="client-logo">Denver Public Schools</div>
+                <div class="client-logo">Charlotte-Mecklenburg</div>
+                <div class="client-logo">Mesa Public Schools</div>
+                <div class="client-logo">Boston Public Schools</div>
+            </div>
+
+            <div class="testimonials">
+                <div class="testimonial slide-in-left">
+                    <div class="testimonial-text">"School Leader Compass helped us secure $1.2M in grant funding and develop a sustainable strategic plan that actually works for our teachers and students. The peer support was invaluable during our most challenging year."</div>
+                    <div class="testimonial-author">Dr. Maria Rodriguez</div>
+                    <div class="testimonial-title">Superintendent, Lincoln Unified School District</div>
+                </div>
+                
+                <div class="testimonial fade-in">
+                    <div class="testimonial-text">"Finally, a consulting service that understands the reality of public education. They didn't just give us another report—they walked alongside us through implementation. Our accountability scores improved 23% in one year."</div>
+                    <div class="testimonial-author">James Patterson</div>
+                    <div class="testimonial-title">Principal, Roosevelt Middle School</div>
+                </div>
+                
+                <div class="testimonial slide-in-right">
+                    <div class="testimonial-text">"The peer leadership cohort saved my career. Connecting with other principals facing similar challenges and having expert facilitators guide us through solutions was exactly what I needed to avoid burnout."</div>
+                    <div class="testimonial-author">Sarah Chen</div>
+                    <div class="testimonial-title">Principal, Valley High School</div>
+                </div>
+                
+                <div class="testimonial fade-in">
+                    <div class="testimonial-text">"Working with School Leader Compass transformed our district's approach to strategic planning. Their human-centered methods helped us engage stakeholders at every level, resulting in a plan that truly reflects our community's needs."</div>
+                    <div class="testimonial-author">Dr. Robert Johnson</div>
+                    <div class="testimonial-title">Assistant Superintendent, Springfield School District</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section id="results" class="results-section fade-in">
+        <div class="container">
+            <h2 class="section-title">Proven Results for Our Clients</h2>
+            <div class="results-grid">
+                <div class="result-card">
+                    <div class="result-number">$2.5M+</div>
+                    <div class="result-description">Total grant funding secured for partner districts in the last 2 years</div>
+                </div>
+                <div class="result-card">
+                    <div class="result-number">87%</div>
+                    <div class="result-description">Of clients report significant improvement in team morale and leadership confidence</div>
+                </div>
+                <div class="result-card">
+                    <div class="result-number">23%</div>
+                    <div class="result-description">Average improvement in accountability scores within 18 months</div>
+                </div>
+                <div class="result-card">
+                    <div class="result-number">92%</div>
+                    <div class="result-description">Client retention rate for our ongoing peer leadership programs</div>
+                </div>
+                <div class="result-card">
+                    <div class="result-number">45%</div>
+                    <div class="result-description">Reduction in leader turnover in districts using our wellbeing programs</div>
+                </div>
+                <div class="result-card">
+                    <div class="result-number">3.5x</div>
+                    <div class="result-description">Return on investment for districts implementing our strategic plans</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section class="resources-section fade-in">
+        <div class="container">
+            <h2 class="section-title" style="margin-bottom: 2rem;">Free Leadership Resources</h2>
+            <div class="resource-card">
+                <h3>Leadership Resilience Checklist</h3>
+                <p>Get our field-tested framework for avoiding burnout and sustaining your leadership impact</p>
+                <form class="lead-capture">
+                    <input type="email" placeholder="Your school email" required>
+                    <button type="submit">Download Now</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section fade-in">
+        <div class="container">
+            <h2 class="section-title">Clear Value, Flexible Options</h2>
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <h3>Strategic Sprint</h3>
+                    <div class="price">$25K–$50K</div>
+                    <ul>
+                        <li>8-week intensive</li>
+                        <li>Funding gap analysis</li>
+                        <li>Custom roadmap</li>
+                    </ul>
+                </div>
+                <div class="pricing-card">
+                    <h3>Peer Cohort</h3>
+                    <div class="price">$2K/month</div>
+                    <ul>
+                        <li>Monthly facilitated sessions</li>
+                        <li>Peer problem-solving</li>
+                        <li>Implementation support</li>
+                    </ul>
+                </div>
+                <div class="pricing-card">
+                    <h3>District Package</h3>
+                    <div class="price">Custom</div>
+                    <ul>
+                        <li>Multi-school support</li>
+                        <li>Combination of services</li>
+                        <li>Bulk discounts</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section fade-in">
+        <div class="container">
+            <h2 class="section-title">Ready to Get Started?</h2>
+            <div style="text-align: center; max-width: 700px; margin: 0 auto;">
+                <p style="font-size: 1.3rem; margin-bottom: 3rem; line-height: 1.7; color: #1e293b;">Let's discuss how School Leader Compass can support your leadership journey and help you navigate the challenges ahead with clarity, confidence, and connection.</p>
+                <a href="mailto:hello@schoolleadercompass.com" class="cta-button">Contact Us Today</a>
+                <p style="margin-top: 2rem; color: #64748b; font-size: 1.2rem;">Or call us at (555) 123-4567</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script>
+        // Navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active'));
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // Header scroll effect
+        let lastScrollY = window.scrollY;
+        window.addEventListener('scroll', function () {
+            const header = document.getElementById('header');
+            const currentScrollY = window.scrollY;
+
+            if (currentScrollY > 100) {
+                header.style.background = 'linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(30, 41, 59, 0.95), rgba(51, 65, 85, 0.9))';
+                header.style.backdropFilter = 'blur(25px)';
+                header.style.boxShadow = '0 15px 40px rgba(15, 23, 42, 0.3)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.9) 50%, rgba(51, 65, 85, 0.85) 100%)';
+                header.style.backdropFilter = 'blur(20px)';
+                header.style.boxShadow = 'none';
+            }
+
+            header.style.transform = (currentScrollY > lastScrollY && currentScrollY > 200) ? 'translateY(-100%)' : 'translateY(0)';
+            lastScrollY = currentScrollY;
+        });
+
+        // Mobile navigation toggle
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        navToggle.addEventListener('click', function () {
+            navLinks.classList.toggle('active');
+            const spans = navToggle.querySelectorAll('span');
+            if (navLinks.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                spans[1].style.opacity = '0';
+                spans[1].style.transform = 'scale(0)';
+                spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[1].style.transform = 'scale(1)';
+                spans[2].style.transform = 'none';
+            }
+        });
+
+        // Service toggle functionality
+        document.querySelectorAll('.toggle-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons and content
+                document.querySelectorAll('.toggle-btn, .service-content').forEach(el => {
+                    el.classList.remove('active');
+                });
+                
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                // Show corresponding content
+                const service = btn.dataset.service;
+                document.getElementById(`${service}-content`).classList.add('active');
+            });
+        });
+
+        // Scroll animations
+        const observer = new IntersectionObserver(function (entries) {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 150);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -80px 0px' });
+
+        document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .scale-in').forEach(el => observer.observe(el));
+
+        // Floating shapes effect
+        window.addEventListener('scroll', function () {
+            const scrolled = window.pageYOffset;
+            const shapes = document.querySelectorAll('.floating-shape');
+            shapes.forEach((shape, index) => {
+                const speed = (index + 1) * 0.5;
+                shape.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        }); 
+
+        // Lead capture form
+        document.querySelector('.lead-capture').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input').value;
+            // Here you would typically send the email to your backend
+            alert(`Thank you! The checklist has been sent to ${email}`);
+            this.reset();
+        });
+    </script>
+</body>
+</html>
